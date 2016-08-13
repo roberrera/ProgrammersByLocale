@@ -16,7 +16,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.PeopleViewActivity" />
         </activity>
-        <activity android:name=".view.MainLocaleActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +26,11 @@
         <activity
             android:name=".view.PeopleViewActivity"
             android:label="@string/title_activity_people_view"
-            android:parentActivityName=".view.MainLocaleActivity"
+            android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.MainLocaleActivity" />
+                android:value=".view.MainActivity" />
         </activity>
     </application>
 
