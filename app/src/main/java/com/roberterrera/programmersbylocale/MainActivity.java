@@ -18,40 +18,42 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.recyclerview_list)
-    RecyclerView mRecyclerView;
+    private List<String> localesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         setTitle("Select a locale");
 
-        List<String> localesList = new ArrayList<>();
+        /* Load list of localities from JSON data */
+        localesList = new ArrayList<>();
         try {
             loadLocales(localesList);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        setUpRecyclerView();
+    }
+
+    public void setUpRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_list);
+
         LocaleViewAdapter mAdapter = new LocaleViewAdapter(localesList, MainActivity.this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         if (localesList.size() > 0) {
-            if (mRecyclerView != null) {
+            if (recyclerView != null) {
 
-                mRecyclerView.setHasFixedSize(true);
-                mRecyclerView.setLayoutManager(layoutManager);
-                mRecyclerView.setAdapter(mAdapter);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(mAdapter);
 
-            } else Log.d("SetupRecyclerView", "RecyclerView or adapter are null.");
-        } else Log.d("LOCALES.SIZE", "List size is 0.");
+            }
+        }
     }
 
     public void loadLocales(List<String> locales) throws JSONException {
