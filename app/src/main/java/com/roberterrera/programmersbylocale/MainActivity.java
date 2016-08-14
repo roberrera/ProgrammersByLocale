@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recyclerview_list)
     RecyclerView mRecyclerView;
 
-    private List<String> locales;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +33,17 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setTitle("Select a locale");
 
-        locales = new ArrayList<>();
+        List<String> localesList = new ArrayList<>();
         try {
-            loadLocales(locales);
+            loadLocales(localesList);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        parseJSON(loadJSONFromAsset());
 
-        LocaleViewAdapter mAdapter = new LocaleViewAdapter(locales, MainActivity.this);
+        LocaleViewAdapter mAdapter = new LocaleViewAdapter(localesList, MainActivity.this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        if (locales.size() > 0) {
+        if (localesList.size() > 0) {
             if (mRecyclerView != null) {
 
                 mRecyclerView.setHasFixedSize(true);
@@ -95,6 +92,5 @@ public class MainActivity extends AppCompatActivity {
         }
         System.out.println(json);
         return json;
-
     }
 }
