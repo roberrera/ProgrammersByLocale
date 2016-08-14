@@ -13,7 +13,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-
 /**
  * Created by Rob on 8/13/16.
  */
@@ -80,6 +79,7 @@ public class LocaleViewAdapter extends RecyclerView.Adapter<LocaleViewHolder> {
 
                 Intent intent = new Intent(context, PeopleViewActivity.class);
                 intent.putExtra("locality", locality);
+                intent.putExtra("locality pos", pos);
                 context.startActivity(intent);
             }
         });

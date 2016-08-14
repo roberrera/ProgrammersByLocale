@@ -16,7 +16,10 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Rob on 8/14/16.
@@ -79,7 +82,7 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
             List<ProgrammerLocation> result = response.getResponse().getLocations();
 
             for (int i = 0; i < result.size(); i++){
-                String locale = response.getResponse().getLocations().get(i).getLocality();
+                String locale = result.get(i).getLocality();
                 locales.add(locale);
             }
         } catch (IllegalStateException e){
@@ -88,18 +91,39 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
     }
 
     @Override
-    public void loadProgrammers(List<String> programmers, String fileName) throws JSONException {
+    public void loadProgrammers(List<String> programmers, String fileName, int localityPosition) throws JSONException {
         Gson gson = new Gson();
+
         String jsonFile = loadJSONFromAsset(fileName);
+        String platform = null;
+        String name = null;
+
+        List<Service> serviceList = new ArrayList<>();
+        List<Programmer> programmerList = new ArrayList<>();
+        Map<String, List<Programmer>> platformMap = new HashMap<>();
 
         try {
-            Service response = gson.fromJson(jsonFile,
-                    Service.class);
-            List<Programmer> result = response.getProgrammers();
+            // Get the JSON response
+            JSONResponse response = gson.fromJson(jsonFile,
+                    JSONResponse.class);
+            // Get the list of locations from the response.
+            List<ProgrammerLocation> locationList = response.getResponse().getLocations();
+            serviceList = locationList.get(localityPosition).getServices();
 
-            for (int i = 0; i < result.size(); i++){
-                String name = result.get(i).getName();
-                programmers.add(name);
+            /* Map the programming platform to the list of programmers
+            * and add the names from that map to a list.
+            */
+            for (int i = 0; i < serviceList.size(); i++) {
+                //TODO: Refactor to be more efficient and be O(n)
+                programmerList = serviceList.get(i).getProgrammers();
+                platform = serviceList.get(i).getPlatform();
+
+                platformMap.put(platform, programmerList);
+
+                for (int k = 0; k < programmerList.size(); k++) {
+                    name = programmerList.get(k).getName();
+                    programmers.add(name);
+                }
             }
         } catch (IllegalStateException e){
             e.printStackTrace();

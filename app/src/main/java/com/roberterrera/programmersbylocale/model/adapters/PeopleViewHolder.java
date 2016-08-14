@@ -3,27 +3,24 @@ package com.roberterrera.programmersbylocale.model.adapters;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.roberterrera.programmersbylocale.R;
 
 /**
- * Created by Rob on 8/13/16.
+ * Created by Rob on 8/14/16.
  */
-public class LocaleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView locationName;
-    public ImageView locationPhoto;
+    public TextView programmerName;
 
     private ItemClickListener itemClickListener;
     private Context context;
 
-    public LocaleViewHolder(View itemView) {
+    public PeopleViewHolder(View itemView) {
         super(itemView);
 
-        locationName = (TextView) itemView.findViewById(R.id.textview_locale_name);
-        locationPhoto = (ImageView) itemView.findViewById(R.id.imageview_locale_photo);
+        programmerName = (TextView) itemView.findViewById(R.id.textview_programmer_name);
 
         context = itemView.getContext();
         itemView.setOnClickListener(this);

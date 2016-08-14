@@ -17,7 +17,7 @@ public interface ActivityInterface {
     void setUpPeopleRecyclerView(List<String> list, PeopleViewAdapter adapter);
     String loadJSONFromAsset(String fileName);
     void loadLocales(List<String> locales, String fileName) throws JSONException;
-    void loadProgrammers (List<String> programmers, String fileName) throws JSONException;
+    void loadProgrammers (List<String> programmers, String fileName, int localityPosition) throws JSONException;
     void loadDetails (Programmer programmer, String fileName) throws JSONException;
 
 
