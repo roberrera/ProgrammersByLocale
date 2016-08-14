@@ -11,11 +11,12 @@ import com.roberterrera.programmersbylocale.R;
 /**
  * Created by Rob on 8/13/16.
  */
-public class LocaleViewHolder extends RecyclerView.ViewHolder{
+public class LocaleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    TextView locationName;
-    ImageView locationPhoto;
+    public TextView locationName;
+    public ImageView locationPhoto;
 
+    private ItemClickListener itemClickListener;
     private Context context;
 
     public LocaleViewHolder(View itemView) {
@@ -24,6 +25,16 @@ public class LocaleViewHolder extends RecyclerView.ViewHolder{
         locationPhoto = (ImageView) itemView.findViewById(R.id.imageview_locale_photo);
 
         context = itemView.getContext();
+        itemView.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        this.itemClickListener.onItemClick(view, getLayoutPosition());
+    }
+
+    public void setItemClickListener(ItemClickListener ic) {
+        this.itemClickListener = ic;
     }
 }

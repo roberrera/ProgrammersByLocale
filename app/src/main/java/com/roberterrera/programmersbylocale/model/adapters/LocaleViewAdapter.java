@@ -1,12 +1,13 @@
 package com.roberterrera.programmersbylocale.model.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.roberterrera.programmersbylocale.PeopleViewActivity;
 import com.roberterrera.programmersbylocale.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,6 +21,7 @@ public class LocaleViewAdapter extends RecyclerView.Adapter<LocaleViewHolder> {
     private Context context;
     private String locality;
     private List<String> programmerLocations;
+    private ItemClickListener itemClickListener;
 
     public LocaleViewAdapter(List<String> locationsList, Context context){
         this.programmerLocations = locationsList;
@@ -67,18 +69,18 @@ public class LocaleViewAdapter extends RecyclerView.Adapter<LocaleViewHolder> {
         } else {
             holder.locationName.setText("Null :(");
             Picasso.with(context)
-                    .load(R.drawable.oaklandport)
+                    .load(R.drawable.nycskyline)
                     .into(holder.locationPhoto);
         }
 
-
-        holder.locationName.setOnClickListener(new View.OnClickListener() {
+        holder.setItemClickListener(new ItemClickListener() {
             @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(context, PeopleViewActivity.class);
-//                intent.putExtra("locality", locality);
-                Toast.makeText(context, "Tapped "+locality, Toast.LENGTH_SHORT).show();
-//                context.startActivity(intent);
+            public void onItemClick(View v, int pos) {
+                locality = programmerLocations.get(pos);
+
+                Intent intent = new Intent(context, PeopleViewActivity.class);
+                intent.putExtra("locality", locality);
+                context.startActivity(intent);
             }
         });
 
