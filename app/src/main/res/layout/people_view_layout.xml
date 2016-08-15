@@ -16,10 +16,17 @@
         android:layout_height="130dp">
 
         <ImageView
+            android:id="@+id/imageview_platform_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/androidlogo" />
+
+        <ImageView
             android:id="@+id/imageview_backgroundtint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#1a237e" />
+            android:background="#661a237e" />
 
         <TextView
             android:id="@+id/textview_programmer_name"
