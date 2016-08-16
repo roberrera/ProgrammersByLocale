@@ -1,13 +1,15 @@
 package com.roberterrera.programmersbylocale.model.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.roberterrera.programmersbylocale.R;
+import com.roberterrera.programmersbylocale.model.Programmer;
+import com.roberterrera.programmersbylocale.view.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,12 +21,13 @@ public class PeopleViewAdapter extends RecyclerView.Adapter<PeopleViewHolder> {
 
     private String name, platform;
     private List<String> programmerNames, platformList;
-
+    private List<Programmer> programmerList;
     private Context context;
 
-    public PeopleViewAdapter(List<String> programmerNames, List<String> platformList, Context context){
+    public PeopleViewAdapter(List<String> programmerNames, List<String> platformList, List<Programmer> programmerList, Context context){
         this.programmerNames = programmerNames;
         this.platformList = platformList;
+        this.programmerList = programmerList;
         this.context = context;
     }
 
@@ -76,9 +79,23 @@ public class PeopleViewAdapter extends RecyclerView.Adapter<PeopleViewHolder> {
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                //TODO: Create intent to DetailActivity and display details about the Programmer from selected row.
                 name = programmerNames.get(pos);
-                Toast.makeText(context, "Name: "+name, Toast.LENGTH_SHORT).show();
+                platform = platformList.get(pos);
+                String faveColor = programmerList.get(pos).getFavoriteColor();
+                String phoneNum = programmerList.get(pos).getPhone();
+                int age = programmerList.get(pos).getAge();
+                double weight = programmerList.get(pos).getWeight();
+                boolean isArtist = programmerList.get(pos).getIsArtist();
+
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("platform", platform);
+                intent.putExtra("color", faveColor);
+                intent.putExtra("phone", phoneNum);
+                intent.putExtra("age", age);
+                intent.putExtra("weight", weight);
+                intent.putExtra("artist", isArtist);
+                context.startActivity(intent);
             }
         });
 
