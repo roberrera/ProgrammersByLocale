@@ -30,7 +30,7 @@ public class PeopleViewActivity extends ActivityMethods {
         List<String> platformList = new ArrayList<>();
         List<Programmer> programmerList = new ArrayList<>();
 
-        PeopleViewAdapter adapter = new PeopleViewAdapter(programmerNames, platformList, this);
+        PeopleViewAdapter adapter = new PeopleViewAdapter(programmerNames, platformList, programmerList, this);
 
         /* Load list of programmers based on location selected */
         try {

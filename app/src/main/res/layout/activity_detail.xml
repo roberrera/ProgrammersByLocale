@@ -1,47 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.roberterrera.programmersbylocale.DetailActivity">
+    tools:context="com.roberterrera.programmersbylocale.view.DetailActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:fitsSystemWindows="true"
-        android:layout_height="@dimen/app_bar_height"
-        android:layout_width="match_parent"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView_details_locale"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:alpha="0.3"-->
+        <!--tools:src="@drawable/nycskyline" />-->
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:fitsSystemWindows="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
+    <ImageView
+        android:id="@+id/imageView_details_platform"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/androidlogo"/>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_detail" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <TextView
+        android:id="@+id/textView_details_age"
+        tools:text="Age: 30"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/textView_details_weight"
+        tools:text="Weight: 140 lbs"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textView_details_age"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView_details_favecolor"
+        tools:text="Favorite Color: Blue"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textView_details_weight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView_details_phone"
+        tools:text="Phone: 5555555555"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textView_details_favecolor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/textView_details_artist"
+        tools:text="Is an artist: Yes"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textView_details_phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+</RelativeLayout>
