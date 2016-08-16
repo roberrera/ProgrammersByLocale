@@ -1,10 +1,11 @@
-package com.roberterrera.programmersbylocale;
+package com.roberterrera.programmersbylocale.presenter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.roberterrera.programmersbylocale.R;
 import com.roberterrera.programmersbylocale.model.JSONResponse;
 import com.roberterrera.programmersbylocale.model.Programmer;
 import com.roberterrera.programmersbylocale.model.ProgrammerLocation;
@@ -16,10 +17,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Rob on 8/14/16.
@@ -91,36 +89,38 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
     }
 
     @Override
-    public void loadProgrammers(List<String> programmers, String fileName, int localityPosition) throws JSONException {
+    public void loadProgrammers(List<String> programmers, List<String> platformList, List<Programmer> programmerList,
+                                String fileName, int localityPosition) throws JSONException {
         Gson gson = new Gson();
 
         String jsonFile = loadJSONFromAsset(fileName);
-        String platform = null;
-        String name = null;
+        String platform;
+        String name;
 
-        List<Service> serviceList = new ArrayList<>();
-        List<Programmer> programmerList = new ArrayList<>();
-        Map<String, List<Programmer>> platformMap = new HashMap<>();
+        List<Service> serviceList;
 
         try {
-            // Get the JSON response
+            /* Get the JSON response */
             JSONResponse response = gson.fromJson(jsonFile,
                     JSONResponse.class);
-            // Get the list of locations from the response.
+            /* Get the locality the user selected */
             List<ProgrammerLocation> locationList = response.getResponse().getLocations();
             serviceList = locationList.get(localityPosition).getServices();
 
-            /* Map the programming platform to the list of programmers
-            * and add the names from that map to a list.
-            */
+            //TODO: Refactor to be more efficient (currently O(n^2) )
             for (int i = 0; i < serviceList.size(); i++) {
-                //TODO: Refactor to be more efficient and be O(n)
+
+                /* 1. Access each programmer from the list of programmers
+                *  within the Service array for this location.
+                *  2. Get the platform associated with a list of programmers. */
                 programmerList = serviceList.get(i).getProgrammers();
                 platform = serviceList.get(i).getPlatform();
 
-                platformMap.put(platform, programmerList);
-
                 for (int k = 0; k < programmerList.size(); k++) {
+                    /* Another way to match platform to programmer
+                     could be to create a list of arrays, or to look at map pairs */
+                    platformList.add(platform);
+
                     name = programmerList.get(k).getName();
                     programmers.add(name);
                 }

@@ -1,4 +1,4 @@
-package com.roberterrera.programmersbylocale;
+package com.roberterrera.programmersbylocale.presenter;
 
 import com.roberterrera.programmersbylocale.model.Programmer;
 import com.roberterrera.programmersbylocale.model.adapters.LocaleViewAdapter;
@@ -17,7 +17,9 @@ public interface ActivityInterface {
     void setUpPeopleRecyclerView(List<String> list, PeopleViewAdapter adapter);
     String loadJSONFromAsset(String fileName);
     void loadLocales(List<String> locales, String fileName) throws JSONException;
-    void loadProgrammers (List<String> programmers, String fileName, int localityPosition) throws JSONException;
+    void loadProgrammers (List<String> programmers, List<String> platformList,
+                          List<Programmer> programmerList, String fileName,
+                          int localityPosition) throws JSONException;
     void loadDetails (Programmer programmer, String fileName) throws JSONException;
 
 

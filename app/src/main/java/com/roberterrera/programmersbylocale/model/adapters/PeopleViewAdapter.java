@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.roberterrera.programmersbylocale.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -15,13 +16,15 @@ import java.util.List;
  * Created by Rob on 8/13/16.
  */
 public class PeopleViewAdapter extends RecyclerView.Adapter<PeopleViewHolder> {
-    private Context context;
-    private String name;
-    private List<String> programmerNames;
-    private ItemClickListener itemClickListener;
 
-    public PeopleViewAdapter(List<String> people, Context context){
-        this.programmerNames = people;
+    private String name, platform;
+    private List<String> programmerNames, platformList;
+
+    private Context context;
+
+    public PeopleViewAdapter(List<String> programmerNames, List<String> platformList, Context context){
+        this.programmerNames = programmerNames;
+        this.platformList = platformList;
         this.context = context;
     }
 
@@ -36,19 +39,46 @@ public class PeopleViewAdapter extends RecyclerView.Adapter<PeopleViewHolder> {
 
     @Override
     public void onBindViewHolder(PeopleViewHolder holder, int position) {
-        name = programmerNames.get(position);
+        int appleLogo = R.drawable.applelogo;
+        int androidLogo = R.drawable.androidlogo;
+        int rubyLogo = R.drawable.rubylogo;
 
-        holder.programmerName.setText(name);
+        name = programmerNames.get(position);
+        platform = platformList.get(position);
+        holder.programmerNameTextView.setText(name);
+
+        /* Change background image based on platform associated with the programmer. */
+        if (platform != null) {
+            switch (platform) {
+                case "iOS":
+                    Picasso.with(context)
+                            .load(appleLogo)
+                            .into(holder.platformLogo);
+                    break;
+                case "Android":
+                    Picasso.with(context)
+                            .load(androidLogo)
+                            .into(holder.platformLogo);
+                    break;
+                case "Ruby":
+                    Picasso.with(context)
+                            .load(rubyLogo)
+                            .into(holder.platformLogo);
+                    break;
+            }
+        } else {
+            holder.programmerNameTextView.setText(R.string.nullString);
+            Picasso.with(context)
+                    .load(R.drawable.nycskyline)
+                    .into(holder.platformLogo);
+        }
+
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                //TODO: Set up a Map that holds the programmer position and their platform
+                //TODO: Create intent to DetailActivity and display details about the Programmer from selected row.
                 name = programmerNames.get(pos);
-                Toast.makeText(context, "Tapped "+name, Toast.LENGTH_SHORT).show();
-
-//                Intent intent = new Intent(context, DetailViewActivity.class);
-//                intent.putExtra("name", name);
-//                context.startActivity(intent);
+                Toast.makeText(context, "Name: "+name, Toast.LENGTH_SHORT).show();
             }
         });
 

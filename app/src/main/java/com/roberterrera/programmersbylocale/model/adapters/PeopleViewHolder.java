@@ -3,6 +3,7 @@ package com.roberterrera.programmersbylocale.model.adapters;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.roberterrera.programmersbylocale.R;
@@ -12,7 +13,8 @@ import com.roberterrera.programmersbylocale.R;
  */
 public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView programmerName;
+    public TextView programmerNameTextView;
+    public ImageView platformLogo;
 
     private ItemClickListener itemClickListener;
     private Context context;
@@ -20,7 +22,8 @@ public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.On
     public PeopleViewHolder(View itemView) {
         super(itemView);
 
-        programmerName = (TextView) itemView.findViewById(R.id.textview_programmer_name);
+        programmerNameTextView = (TextView) itemView.findViewById(R.id.textview_programmer_name);
+        platformLogo = (ImageView) itemView.findViewById(R.id.imageview_platform_photo);
 
         context = itemView.getContext();
         itemView.setOnClickListener(this);
