@@ -121,7 +121,7 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
                     /* Another way to match platform to programmer
                      could be to create a list of arrays, or to look at map pairs */
 
-                    Programmer programmerObj = tempProgList.get(i);
+                    Programmer programmerObj = tempProgList.get(k);
                     programmerList.add(programmerObj);
 
                     platformList.add(platform);
