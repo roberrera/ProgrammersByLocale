@@ -5,17 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.roberterrera.programmersbylocale.view.DetailActivity">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView_details_locale"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:alpha="0.3"-->
-        <!--tools:src="@drawable/nycskyline" />-->
-
     <ImageView
         android:id="@+id/imageView_details_platform"
         android:layout_width="140dp"

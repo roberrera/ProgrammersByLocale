@@ -10,8 +10,6 @@ import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends ActivityMethods {
 
-    private String isAnArtist;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +23,18 @@ public class DetailActivity extends ActivityMethods {
         TextView isAnArtistText = (TextView) findViewById(R.id.textView_details_artist);
 
         int age = getIntent().getIntExtra("age", -2);
-        ageText.setText("Age: "+String.valueOf(age));
+        ageText.setText(String.format("%s%s",
+                getString(R.string.ageLabel),
+                String.valueOf(age)));
 
         double weight = getIntent().getDoubleExtra("weight", -1);
-        weightText.setText("Weight: "+String.valueOf(weight)+" lbs");
+        weightText.setText(String.format("%s%s%s",
+                getString(R.string.weightLabel),
+                String.valueOf(weight),
+                getString(R.string.weightLabelEnd)));
 
         boolean isArtist = getIntent().getBooleanExtra("artist", false);
+        String isAnArtist;
         if (isArtist){
             isAnArtist = "Is an artist: Yes";
         } else isAnArtist = "Is an artist: No";
@@ -40,10 +44,14 @@ public class DetailActivity extends ActivityMethods {
         setTitle(name);
 
         String faveColor = getIntent().getStringExtra("color");
-        faveColorText.setText("Favorite Color: "+faveColor);
+        faveColorText.setText(String.format("%s%s",
+                getString(R.string.faveColorLabel),
+                faveColor));
 
         String phoneNum = getIntent().getStringExtra("phone");
-        phoneText.setText("Phone: "+formatPhoneNumber(phoneNum));
+        phoneText.setText(String.format("%s%s",
+                getString(R.string.phoneLabel),
+                formatPhoneNumber(phoneNum)));
 
         String platform = getIntent().getStringExtra("platform");
 
