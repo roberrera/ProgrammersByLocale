@@ -20,7 +20,5 @@ public interface ActivityInterface {
     void loadProgrammers (List<String> programmers, List<String> platformList,
                           List<Programmer> programmerList, String fileName,
                           int localityPosition) throws JSONException;
-    void loadDetails (Programmer programmer, String fileName) throws JSONException;
-
-
+    String formatPhoneNumber (String phoneNumber);
 }

@@ -113,25 +113,36 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
                 /* 1. Access each programmer from the list of programmers
                 *  within the Service array for this location.
                 *  2. Get the platform associated with a list of programmers. */
-                programmerList = serviceList.get(i).getProgrammers();
+                List<Programmer> tempProgList = serviceList.get(i).getProgrammers();
                 platform = serviceList.get(i).getPlatform();
 
-                for (int k = 0; k < programmerList.size(); k++) {
+
+                for (int k = 0; k < tempProgList.size(); k++) {
                     /* Another way to match platform to programmer
                      could be to create a list of arrays, or to look at map pairs */
+
+                    Programmer programmerObj = tempProgList.get(i);
+                    programmerList.add(programmerObj);
+
                     platformList.add(platform);
 
-                    name = programmerList.get(k).getName();
+                    name = tempProgList.get(k).getName();
                     programmers.add(name);
+
+                    System.out.println("Programmer List Size: "+programmerList.size()+", Loop position "+k);;
                 }
             }
+
         } catch (IllegalStateException e){
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void loadDetails(Programmer programmer, String fileName) throws JSONException {
-        //TODO: Add JSON call
+    public String formatPhoneNumber (String phoneNumber) {
+
+        return String.format("(%s) %s-%s",
+                phoneNumber.substring(0, 3),
+                phoneNumber.substring(3, 6),
+                phoneNumber.substring(6, 10));
     }
 }
