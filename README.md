@@ -12,4 +12,4 @@ Works in portrait and landscape, on phones and tablets.
  - jsonschema2pojo
  - GSON
 
-![](https://github.com/roberrera/ProgrammersByLocale/blob/master/Screenshots/device-2016-08-14-001831-small.png)
+![](https://github.com/roberrera/ProgrammersByLocale/blob/master/Screenshots/device-2016-08-14-001831-small.png) ![](https://github.com/roberrera/ProgrammersByLocale/blob/master/Screenshots/device-2016-08-15-194021-small.png)
