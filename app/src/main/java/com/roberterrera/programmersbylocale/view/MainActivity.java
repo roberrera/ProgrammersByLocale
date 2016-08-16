@@ -1,8 +1,10 @@
-package com.roberterrera.programmersbylocale;
+package com.roberterrera.programmersbylocale.view;
 
 import android.os.Bundle;
 
+import com.roberterrera.programmersbylocale.R;
 import com.roberterrera.programmersbylocale.model.adapters.LocaleViewAdapter;
+import com.roberterrera.programmersbylocale.presenter.ActivityMethods;
 
 import org.json.JSONException;
 

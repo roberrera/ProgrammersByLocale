@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.roberterrera.programmersbylocale.PeopleViewActivity;
+import com.roberterrera.programmersbylocale.view.PeopleViewActivity;
 import com.roberterrera.programmersbylocale.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,7 +20,6 @@ public class LocaleViewAdapter extends RecyclerView.Adapter<LocaleViewHolder> {
     private Context context;
     private String locality;
     private List<String> programmerLocations;
-    private ItemClickListener itemClickListener;
 
     public LocaleViewAdapter(List<String> locationsList, Context context){
         this.programmerLocations = locationsList;
@@ -66,7 +65,7 @@ public class LocaleViewAdapter extends RecyclerView.Adapter<LocaleViewHolder> {
                     break;
             }
         } else {
-            holder.locationName.setText("Null :(");
+            holder.locationName.setText(R.string.nullString);
             Picasso.with(context)
                     .load(R.drawable.nycskyline)
                     .into(holder.locationPhoto);
