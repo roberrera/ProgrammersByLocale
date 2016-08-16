@@ -1,5 +1,6 @@
 package com.roberterrera.programmersbylocale.view;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.roberterrera.programmersbylocale.R;
@@ -19,26 +20,42 @@ public class PeopleViewActivity extends ActivityMethods {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people);
 
-          /* Get locality data passed from MainActivity */
         String locality = getIntent().getStringExtra("locality");
-        int localityPos = getIntent().getIntExtra("locality pos", 0);
-
         setTitle("Programmers in "+locality);
 
+        LoadProgrammersTask loadProgrammersTask = new LoadProgrammersTask();
+        loadProgrammersTask.execute();
+    }
+
+    public class LoadProgrammersTask extends AsyncTask<Void, Void, Void>{
+
         String jsonFile = "android_model_challenge.json";
+
         List<String> programmerNames = new ArrayList<>();
         List<String> platformList = new ArrayList<>();
         List<Programmer> programmerList = new ArrayList<>();
 
-        PeopleViewAdapter adapter = new PeopleViewAdapter(programmerNames, platformList, programmerList, this);
+        PeopleViewAdapter adapter = new PeopleViewAdapter(programmerNames, platformList, programmerList, PeopleViewActivity.this);
 
-        /* Load list of programmers based on location selected */
-        try {
-            loadProgrammers(programmerNames, platformList, programmerList, jsonFile, localityPos);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        /* Get locality data passed from MainActivity */
+        int localityPos = getIntent().getIntExtra("locality pos", 0);
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            /* Load list of programmers based on location selected */
+            try {
+                loadProgrammers(programmerNames, platformList, programmerList, jsonFile, localityPos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
 
-        setUpPeopleRecyclerView(programmerNames, adapter);
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            setUpPeopleRecyclerView(programmerNames, adapter);
+        }
     }
 }
