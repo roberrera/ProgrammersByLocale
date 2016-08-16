@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProgrammersByLocale</string>
+    <string name="app_name">Programmers By Locale</string>
     <string name="nullString">Null :(</string>
     <string name="ageLabel">"Age: "</string>
     <string name="weightLabel">"Weight: "</string>

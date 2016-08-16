@@ -91,13 +91,13 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
     @Override
     public void loadProgrammers(List<String> programmers, List<String> platformList, List<Programmer> programmerList,
                                 String fileName, int localityPosition) throws JSONException {
-        Gson gson = new Gson();
 
         String jsonFile = loadJSONFromAsset(fileName);
         String platform;
         String name;
-
         List<Service> serviceList;
+
+        Gson gson = new Gson();
 
         try {
             /* Get the JSON response */
@@ -116,7 +116,6 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
                 List<Programmer> tempProgList = serviceList.get(i).getProgrammers();
                 platform = serviceList.get(i).getPlatform();
 
-
                 for (int k = 0; k < tempProgList.size(); k++) {
                     /* Another way to match platform to programmer
                      could be to create a list of arrays, or to look at map pairs */
@@ -128,8 +127,6 @@ public class ActivityMethods extends AppCompatActivity implements ActivityInterf
 
                     name = tempProgList.get(k).getName();
                     programmers.add(name);
-
-                    System.out.println("Programmer List Size: "+programmerList.size()+", Loop position "+k);;
                 }
             }
 
